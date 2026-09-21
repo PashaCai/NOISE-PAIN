@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f3">
+  <meta name="description" content="Ten recordings. Ten sound terrains. Explore the pressure of noise through contours, grain and movement.">
+  <title>Sound, Felt. — A Sensory Translation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Sound, Felt. home"><img class="brand-mark" src="assets/logo.png" alt="Noise Pain logo" width="58" height="63"><span>SOUND, FELT.<small>A SENSORY EXPERIMENT</small></span></a>
+    <span class="top-caption">AN EXPERIMENT IN LISTENING & EMPATHY</span>
+    <button class="text-button" id="aboutButton">About the experience <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar" aria-label="Sound archive">
+      <div class="intro">
+        <div class="eyebrow"><span class="blue-dot"></span> SOUND STUDIES / 001—010</div>
+        <h1>YOUR BACKGROUND.<br>THEIR <em>STORM.</em></h1>
+        <p>Some sounds pass you by.<br>For someone else, they never leave.</p>
+      </div>
+      <div class="list-heading"><span>Choose a sound</span><span class="mono">10 RECORDINGS</span></div>
+      <div id="soundList" class="sound-list" role="group" aria-label="Choose a sound to play automatically"></div>
+      <div class="sidebar-foot"><span class="small-cross">+</span><p>Giving shape to sensations<br>that words cannot hold.</p></div>
+    </aside>
+
+    <section class="experience" aria-label="Interactive sound visualization">
+      <div class="stage" id="stage">
+        <canvas id="terrain" aria-label="Animated blue contours generated from the selected recording. Drag to reshape; scroll to zoom." tabindex="0"></canvas>
+        <div class="stage-top">
+          <div><div class="eyebrow">SOUND TOPOGRAPHY</div><h2><span id="trackTitle">Sound 01</span><span class="track-file" id="trackFile">1.wav</span></h2></div>
+          <div class="state"><span id="stateDot" class="state-dot"></span><span id="stateText">Preparing</span></div>
+        </div>
+        <div class="side-label left-label">A SHAPE OF WHAT YOU HEAR</div>
+        <div class="side-label right-label">LISTEN CLOSER. FEEL DIFFERENTLY.</div>
+        <div class="crosshair cross-one" aria-hidden="true">+</div><div class="crosshair cross-two" aria-hidden="true">+</div>
+        <div class="art-caption"><span class="mono" id="artNumber">FIG. 01</span><span id="shapeLabel">Waves / Folds / Grain</span></div>
+        <div class="stage-bottom"><p><span class="mouse-icon" aria-hidden="true"></span> Drag to twist · Scroll to zoom · Double-click to reset</p><div class="view-tools"><button id="zoomOut" aria-label="Zoom out">−</button><span id="zoomValue" class="mono">100%</span><button id="zoomIn" aria-label="Zoom in">+</button><button id="resetView" title="Reset the view" aria-label="Reset view">↺</button></div></div>
+        <div id="entry" class="entry" hidden>
+          <div class="entry-card"><span class="eyebrow">SOUND, FELT.</span><h3>Feel the other side of sound.</h3><p>Let sound and shape unfold together.<br>Pause or adjust the volume at any time.</p><button id="enterButton" class="primary-button">Enter the experience <span>↗</span></button><small>Click to enable audio. Sound selections then play automatically.</small></div>
+        </div>
+        <div id="errorMessage" class="error-message" role="alert" hidden></div>
+      </div>
+
+      <div class="reading" aria-label="Sound characteristics">
+        <div class="reading-title"><span class="eyebrow">SOUND, NOW</span><span id="textureDescription">Waves and textures</span></div>
+        <div class="band"><div><span>Low · Pressure</span><span class="mono" id="lowValue">0%</span></div><div class="meter"><i id="lowMeter"></i></div><small>20 — 250 Hz</small></div>
+        <div class="band"><div><span>Mid · Overlap</span><span class="mono" id="midValue">0%</span></div><div class="meter"><i id="midMeter"></i></div><small>250 — 2k Hz</small></div>
+        <div class="band"><div><span>High · Edge</span><span class="mono" id="highValue">0%</span></div><div class="meter"><i id="highMeter"></i></div><small>2k — 20k Hz</small></div>
+      </div>
+
+      <section class="player" aria-label="Audio player">
+        <button id="playButton" class="play-button" aria-label="Play audio"><svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5L19 12L8 19Z"/></svg></button>
+        <div class="timeline"><div class="timeline-heading"><span id="playerLabel">01 / Sound 01</span><span class="mono"><span id="currentTime">00:00</span><span class="time-separator"> / </span><span id="duration">00:18</span></span></div><div class="waveform-wrap"><canvas id="waveform" aria-hidden="true"></canvas><input id="seek" class="seek" type="range" min="0" max="18" step="0.01" value="0" aria-label="Playback position"></div></div>
+        <div class="audio-controls"><div class="volume-line"><button id="muteButton" class="icon-button" aria-label="Mute" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9H8L13 5V19L8 15H4Z"/><path class="sound-waves" d="M16 8Q21 12 16 16M18 5Q26 12 18 19"/></svg></button><input id="volume" type="range" min="0" max="100" value="35" aria-label="Volume"><span id="volumeValue" class="mono">35%</span></div><button id="loopButton" class="loop-button" aria-pressed="true">↻ <span>Loop recording</span></button></div>
+      </section>
+    </section>
+  </main>
+  <footer><span>SOUND, FELT. <span class="footer-slash">/</span> A SENSORY TRANSLATION</span><span>Every discomfort deserves to be heard.<span class="blue-dot"></span></span></footer>
+
+  <dialog id="aboutDialog">
+    <button class="dialog-close" id="closeAbout" aria-label="Close information">×</button>
+    <div class="eyebrow">ABOUT THE EXPERIENCE</div><h3>See the sound.<br>Feel a little closer.</h3>
+    <p>This work invites people without noise sensitivity to consider how overwhelming everyday sounds can feel. Frequency, energy and sudden changes become pressure, overlapping contours and sharp textures: a way to approach sounds that others cannot simply tune out.</p>
+    <div class="mapping"><div><b>01 Low frequencies</b><span>Broad swells, compression and slow waves.</span></div><div><b>02 Mid frequencies</b><span>Folding contours and irregular intersections.</span></div><div><b>03 High frequencies</b><span>Fine spikes, grains and tightly drawn textures.</span></div><div><b>04 Transients</b><span>Brief expansions that follow sudden changes in sound.</span></div></div>
+    <p>Drag to explore the form. Scroll or use + / − to zoom; double-click to reset. Space plays or pauses; Esc pauses audio. Selecting a recording starts it from the beginning. Muting preserves the moving image.</p>
+    <p class="note">The visuals use the actual spectra of these ten recordings. Their forms are an artistic interpretation, not a clinical measure of anyone’s distress. Band percentages show relative energy within a recording, not environmental sound pressure. Recordings are numbered because the original files did not include scene names.</p>
+  </dialog>
+  <audio id="audio" preload="auto" loop playsinline></audio>
+  <script src="profiles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
